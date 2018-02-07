@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Randomize from "./Randomize.js"
-import FindMean from "./FindMean.js"
-import FetchTable from "./FetchTable.js"
-import SmileyFace from "./SmileyFace.js"
-
+import Question1 from "./Question1.js"
+import LandingPage from "./LandingPage.js"
+import {
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom"
 
 class App extends Component {
 
@@ -12,12 +14,27 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Randomize/>
-        <FindMean/>
-        <br/>
-        <FetchTable/>
-        <SmileyFace/>
+      <div>
+        <Switch>
+          <Route exact path="/landingpage" render={props => {
+            return (
+              <LandingPage
+              />
+            );
+          }} />
+          <Route exact path="/" render={props => {
+            return (
+              <Question1
+              />
+            );
+          }} />
+          <Route
+            path="/*"
+            render={props => {
+              return <Redirect to="/" />;
+            }}
+          />
+        </Switch>
       </div>
     );
   }
